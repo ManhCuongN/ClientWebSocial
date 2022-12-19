@@ -14,16 +14,18 @@ export default function Input({ onSend, onRes }) {
     e.preventDefault();
     const headers = {
       'Content-Type': 'application/json',
-      "Access-Control-Allow-Origin": "*"
+      'Access-Control-Allow-Origin' : '*',
+      'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       
     }
      setText("");
     onSend(message);
    var  body = message
-    axios.post(`${BASE_URL}/api/chatbot`, {body} ,{
-        headers: headers
-      })
-      .then((res) => onRes(res.data.message))
+   fetch(`${BASE_URL}/api/chatbot`, {
+    method: 'POST', // or 'PUT'
+    headers:headers,
+    body,
+  }).then((res) => onRes(res.data.message))
       .catch((error) => {
        console.log("error: " + error);
       })
