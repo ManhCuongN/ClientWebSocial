@@ -4,6 +4,7 @@ import valid from '../../utils/valid'
 
 
 export const login = (data) => async (dispatch) => {
+    
     try {
         dispatch({ type: GLOBALTYPES.ALERT, payload: {loading: true} })
         const res = await postDataAPI('login', data)
@@ -14,13 +15,13 @@ export const login = (data) => async (dispatch) => {
                 user: res.data.user
             } 
         })
-
+        console.log("rrt",res.data.user);
         localStorage.setItem("firstLogin", true)
         dispatch({ 
             type: GLOBALTYPES.ALERT, 
             payload: {
                 success: res.data.msg
-            } 
+            }
         })
         
     } catch (err) {

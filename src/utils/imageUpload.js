@@ -2,7 +2,7 @@ export const checkImage = (file) => {
   let err = "";
   if (!file) return (err = "File does not exist.");
 
-  if (file.size > 1024 * 1024)
+  if (file.size >  5120 *  5120)
     // 1mb
     err = "The largest image size is 1mb.";
 
