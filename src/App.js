@@ -30,79 +30,82 @@ import "./App.css";
 import LoginFace from "./pages/login.face";
 import RegisterEcommerceModal from "./components/RegisterEcommerceModal";
 import Shopping from "./pages/shoping";
+import Chatbot from "./components/chatbot/chatbot";
 
 function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const { auth, status, modal, call, resgisterEcom } = useSelector(
-    (state) => state
-  );
+  // const { auth, status, modal, call, resgisterEcom } = useSelector(
+  //   (state) => state
+  // );
 
-  useEffect(() => {
-    dispatch(refreshToken());
+  // useEffect(() => {
+  //   dispatch(refreshToken());
 
-    const socket = io();
-    dispatch({ type: GLOBALTYPES.SOCKET, payload: socket });
-    return () => socket.close();
-  }, [dispatch]);
+  //   const socket = io();
+  //   dispatch({ type: GLOBALTYPES.SOCKET, payload: socket });
+  //   return () => socket.close();
+  // }, [dispatch]);
 
-  useEffect(() => {
-    if (auth.token) {
-      dispatch(getPosts(auth.token));
-      dispatch(getSuggestions(auth.token));
-      dispatch(getNotifies(auth.token));
-    }
-  }, [dispatch, auth.token]);
+  // useEffect(() => {
+  //   if (auth.token) {
+  //     dispatch(getPosts(auth.token));
+  //     dispatch(getSuggestions(auth.token));
+  //     dispatch(getNotifies(auth.token));
+  //   }
+  // }, [dispatch, auth.token]);
 
-  useEffect(() => {
-    if (!("Notification" in window)) {
-      alert("This browser does not support desktop notification");
-    } else if (Notification.permission === "granted") {
-    } else if (Notification.permission !== "denied") {
-      Notification.requestPermission().then(function (permission) {
-        if (permission === "granted") {
-        }
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!("Notification" in window)) {
+  //     alert("This browser does not support desktop notification");
+  //   } else if (Notification.permission === "granted") {
+  //   } else if (Notification.permission !== "denied") {
+  //     Notification.requestPermission().then(function (permission) {
+  //       if (permission === "granted") {
+  //       }
+  //     });
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    const newPeer = new Peer(undefined, {
-      path: "/",
-      secure: true,
-    });
+  // useEffect(() => {
+  //   const newPeer = new Peer(undefined, {
+  //     path: "/",
+  //     secure: true,
+  //   });
 
-    dispatch({ type: GLOBALTYPES.PEER, payload: newPeer });
-  }, [dispatch]);
+  //   dispatch({ type: GLOBALTYPES.PEER, payload: newPeer });
+  // }, [dispatch]);
 
   return (
     <Router>
-      <Alert />
+           <Route exact path="/" component={Chatbot} />
 
-      <input type="checkbox" id="theme" />
-      <div className={`App ${(status || modal) && "mode"}`}>
-        <div className="main">
-          {auth.token && <Header />}
-          {status && <StatusModal />}
-          {resgisterEcom && <RegisterEcommerceModal />}
-          {auth.token && <SocketClient />}
-          {call && <CallModal />}
-
-          <Route exact path="/" component={auth.token ? Home : Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login-face" component={LoginFace} />
-          <Route
-            exact
-            path="/shopping"
-            component={auth.token ? Shopping : Login}
-          />
-
-          <PrivateRouter exact path="/:page" component={PageRender} />
-          <PrivateRouter exact path="/:page/:id" component={PageRender} />
-        </div>
-      </div>
     </Router>
   );
 }
 
 export default App;
+{/* <Alert />
+
+<input type="checkbox" id="theme" />
+<div className={`App ${(status || modal) && "mode"}`}>
+  <div className="main">
+    {auth.token && <Header />}
+    {status && <StatusModal />}
+    {resgisterEcom && <RegisterEcommerceModal />}
+    {auth.token && <SocketClient />}
+    {call && <CallModal />}
+
+    <Route exact path="/" component={auth.token ? Home : Login} />
+    <Route exact path="/register" component={Register} />
+    <Route exact path="/login-face" component={LoginFace} />
+    <Route
+      exact
+      path="/shopping"
+      component={auth.token ? Shopping : Login}
+    />
+
+    <PrivateRouter exact path="/:page" component={PageRender} />
+    <PrivateRouter exact path="/:page/:id" component={PageRender} />
+  </div>
+</div> */}

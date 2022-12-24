@@ -10,6 +10,7 @@ import { updateComment, likeComment, unLikeComment } from '../../../redux/action
 import InputComment from '../InputComment'
 
 const CommentCard = ({children, comment, post, commentId}) => {
+    console.log("commentCard", post);
     const { auth, theme } = useSelector(state => state)
     const dispatch = useDispatch()
 
