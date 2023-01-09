@@ -1,4 +1,5 @@
 .auth_page{
+   
     width: 100%;
     min-height: 100vh;
     background: #fdfdfd;
@@ -7,6 +8,8 @@
     justify-content: center;
 }
 .auth_page form{
+    border-radius: 10px;
+    box-shadow: 0 12px 24px 0 #3399FF;
     background: #fff;
     max-width: 400px;
     width: 100%;
@@ -17,6 +20,8 @@
 
 .auth_page form .pass{
     position: relative;
+    border-radius: 10px;
+    box-shadow: 0 12px 24px 0 #3399FF;
 }
 
 .auth_page form .pass small{
@@ -26,4 +31,10 @@
     transform: translateY(-50%);
     cursor: pointer;
     opacity: 0.5;
+   
+}
+
+.inputEmail {
+    border-radius: 10px;
+    box-shadow: 0 12px 24px 0 #3399FF;
 }

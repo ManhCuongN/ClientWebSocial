@@ -1,8 +1,13 @@
 import React, { Fragment, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../utils/config";
+import { useSelector } from "react-redux";
 
-export default function Input({ onSend, onRes }) {
+
+export default function Input({ onSend, onRes, auth }) {
+
+
+
   const [message, setText] = useState("");
   const [response, setResponse] = useState("");
 
@@ -13,38 +18,28 @@ export default function Input({ onSend, onRes }) {
   const handleSend = async e => {
     e.preventDefault();
     const headers = {
+      Authorization: auth.token,
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin' : '*',
-      'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-      
+      'Access-Control-Allow-Origin' : '*',  
     }
+    
      setText("");
     onSend(message);
-   var  body = message
-   fetch(`${BASE_URL}/api/chatbot`, {
-    method: 'POST', // or 'PUT'
-    headers:headers,
-    body,
-  }).then((res) => onRes(res.data.message))
+   
+    axios.post(`https://apisocial-production.up.railway.app/api/chatbot`, {
+      text: message
+  },{
+      headers: headers
+      })
+      .then((res) => onRes(res.data.message))
       .catch((error) => {
        console.log("error: " + error);
       })
-    
-  //  const a =  fetch('http://localhost:5000/api/chatbot', {
-  //     method: 'POST', // or 'PUT'
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: JSON.stringify(message),
-  //   }).then((res) => console.log(res.json()))
-    // setText("");
-    // onSend(message);
   };
 
   return (
     <Fragment>
-      <div className="messages">
-      abc
-      <div/>
-      </div>
+
     <div className="input">
       <form onSubmit={handleSend}>
         <input

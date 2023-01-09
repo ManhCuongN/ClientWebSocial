@@ -45,13 +45,13 @@ const RightSideBar = () => {
           rel="noreferrer"
           style={{ wordBreak: "break-all" }}
         >
-          https://www.youtube.com/c/DevATHTML
+         
         </a>
         <small className="d-block">
-          Welcome to our channel "DevAT-VietNam"
+          Welcome to our channel "MC-NH"
         </small>
 
-        <small>&copy; 2021 V-NETWORK FROM DEV A.T VIET NAM</small>
+        <small>&copy; Mạnh Cường & Ngọc Huy 2022</small>
       </div>
     </div>
   );

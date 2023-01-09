@@ -79,6 +79,7 @@ function App() {
   return (
     <Router>
   <Alert />
+  
 
 <input type="checkbox" id="theme" />
 <div className={`App ${(status || modal) && "mode"}`}>
@@ -92,7 +93,7 @@ function App() {
    <Route exact path="/" component={auth.token ? Home : Login} />
    <Route exact path="/register" component={Register} />
    <Route exact path="/login-face" component={LoginFace} />
-   <Route exact path="/chatbot" component={Chatbot} />
+
    <Route
      exact
      path="/shopping"
