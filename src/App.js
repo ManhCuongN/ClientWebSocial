@@ -42,7 +42,7 @@ function App() {
   useEffect(() => {
     dispatch(refreshToken());
 
-    const socket = io('https://master--animated-croissant-902823.netlify.app/');
+    const socket = io('/');
     dispatch({ type: GLOBALTYPES.SOCKET, payload: socket });
     return () => socket.close();
   }, [dispatch]);
