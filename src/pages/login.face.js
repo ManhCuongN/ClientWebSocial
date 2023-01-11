@@ -69,6 +69,7 @@ function LoginFace() {
     //Successfully
    // dispatch({ type: GLOBALTYPES.ALERT, payload: {loading: true} })
     //const res = await postDataAPI('login', data)
+
     dispatch({ 
         type: GLOBALTYPES.AUTH,
         payload: {
@@ -77,10 +78,12 @@ function LoginFace() {
         }
     })
     localStorage.setItem("firstLogin", true)
+    localStorage.setItem("token", userData.payload.access_token)
+  
     dispatch({ 
         type: GLOBALTYPES.ALERT, 
         payload: {
-            success: "Login Success"
+            success: "Login Face Success"
         } 
     })
 
