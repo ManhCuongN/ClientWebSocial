@@ -42,7 +42,15 @@ function App() {
   useEffect(() => {
     dispatch(refreshToken());
 
-    const socket = io('wss://animated-croissant-902823.netlify.app/');
+    const socket = io('https://animated-croissant-902823.netlify.app/', {
+      reconnectionDelay: 1000,
+      reconnection: true,
+      reconnectionAttemps: 10,
+      transports: ['websocket'],
+      agent: false,
+      upgrade: false,
+      rejectUnauthorized: false
+  });
     dispatch({ type: GLOBALTYPES.SOCKET, payload: socket });
     return () => socket.close();
   }, [dispatch]);
